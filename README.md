@@ -66,6 +66,18 @@ If you're looking the pages 13 to 15 of the <a href="http://gallica.bnf.fr/ark:/
 textbook(url="http://gallica.bnf.fr/ark:/12148/bpt6k6290660h", title="bottin", firstpage=13, lastpage=15)
 </blockquote>
 
+<h3>What's next?</h3>
+
+If all works fine you should see your directory should list the retrieved files in the following manneer:
+<blockquote>
+lesdebats-18620103.txt<br />
+lesdebats-18620102.txt<br />
+lesdebats-18620101.txt<br />
+lesdebats-18621231.txt<br />
+</blockquote>
+
+While you can do some convenient data analysis with python, I would recommend using a more powerful statistic language. <a href="http://www.r-project.org/">R</a> includes an <a hrefh="http://cran.r-project.org/web/packages/tm/index.html">effective library</a> for text and data mining, tm. This <a href="http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf">introduction</a> to the tm package is quite accessible.
+
 <h3>Future development</h3>
 
 I'm planning to do the following things:<ul>
