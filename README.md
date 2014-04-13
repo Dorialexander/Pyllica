@@ -7,7 +7,7 @@ It will not retrieve documents that are only accessible in image version (that i
 
 <h3>Installation and requirements</h3>
 
-It is based on python 2.7.5 and requires the module <em>beautiful soup</em>(<a href="http://www.crummy.com/software/BeautifulSoup/)">more info</a>).
+It is based on python 2.7.5 and requires the module <em>beautiful soup</em> (<a href="http://www.crummy.com/software/BeautifulSoup/)">more info</a>).
 
 To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical to work with a clean file). It should begin with:
 
