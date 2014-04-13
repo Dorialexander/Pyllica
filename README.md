@@ -13,7 +13,7 @@ To initiate pyllica, put pyllica.py in the directory where you want to archive t
 
 <blockquote>
 from pyllica import *
-</blockwuote>
+</blockquote>
 
 A typical command file would look like this :
 <blockquote>
