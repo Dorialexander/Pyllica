@@ -10,8 +10,10 @@ It is based on python 2.7.5 and requires the "beautiful soup" module (<href="htt
 To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical this way). It should begins with "from pyllica import *".
 
 A typical command file would look like this :
-  from pyllica import *
-  textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
+<blockquote>
+from pyllica import *
+textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
+</blockquote>
 
 On my computer, the download rates was approximately 10-15 pages per minute for newspapers (much quicker for usual books, as pages are lighter and there is less calculus involved). The rate could go higher or lower depending on the efficiency of your laptop the quality of the internet connection.
 
@@ -34,9 +36,11 @@ To use textpress, you have to specify the following information:
 
 If I want to get the first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following :
 
+<blockquote>
 textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdebats", year=1862, month=1, day=6, ranging=7, item=52, firstpage=1, lastpage=2)
+</blockquote>
 
-pyllica also provindes you an index of the gallica url of the mains french newspaper archived in gallica.
+pyllica also provindes you a brief index of the gallica url of the mains french newspaper archived in gallica.
 
 <h3>Textbook</h3>
 
