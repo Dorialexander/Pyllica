@@ -83,9 +83,10 @@ While you can do some convenient data analysis with python, I would recommend us
 <h3>Future development</h3>
 
 I'm planning to do the following things:<ul>
-<li><b>Rewriting the code for older version of python</b> (and using regex to avoid the installation of beautiful soup).</li>
+<li><b>Rewrite the code for older version of python</b> (and using regex to avoid the installation of beautiful soup).</li>
 <li><b>Adding a new function to retrieve issues of periodicals</b> (<a href="http://gallica.bnf.fr/ark:/12148/cb32688404r/date">like this one</a>).</li>
 <li><b>Adding a set of functions to deal with image and pdf versions</b> (an adaptation of the <a href="https://fr.wikisource.org/wiki/Wikisource:Gallica/gallica.ml">fine script</a> of <a href="https://fr.wikisource.org/wiki/Utilisateur:Pmx">Pmx</a> for Wikisource for python might seem nice).</li>
+<li><b>Inclusion of tabular content recognition</b>. Instead of being read like texts, tables would be recognised as data structure</li>
 <li><b>Adding gallica metadata to the retrieved files</b> (authors, editors and so forth…).</li>
 <li><b>Developing of repository of section separators for several old french newspapers</b>, so that the content of a specific section can be retrieved. I've made up a function to fetch all the business sections of the "Journal des débats" in the 1860s: the results were not perfect (one issue out of two were properly retrieved), as this function relies on excellent OCR recognition. This is still an improvement from all-manual processes.</li>
 </ul>
