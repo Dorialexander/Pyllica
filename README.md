@@ -38,7 +38,7 @@ To use textpress, you have to specify the following information:<ul>
 <li><b>item</b> = number of newspapers retrieved</li> 
 <li><b>ranging</b> = rate of fetching. For instance, a ranging of 7, will give you a newspaper every week. This is especially useful if you look for journalistic texts that appears on a non-daily basis (a weekly chronicle…).</li>
 <li><b>firstpage</b> = the first page you are looking for.</li>
-<li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastapage=4 should do the trick.</li>
+<li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastpage=4 should do the trick.</li>
 </ul>
 
 If you want first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following:
