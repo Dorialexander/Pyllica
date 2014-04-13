@@ -3,13 +3,17 @@ Pyllica
 
 Pyllica is a small python tool to retrieve the text-version of newspapers in <a href="http://gallica.bnf.fr/">gallica</a>, the main french digital library. It works also for books and other single documents (and, soon perhaps, for periodicals). 
 
-It will not retrieve documents that are only accessible in image version (that is, that have not been OCRized).
+It will not retrieve documents that are only accessible in image version (that is, that have not been <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRized</a>).
 
 <h3>Installation and requirements</h3>
 
 It is based on python 2.7.5 and requires the "beautiful soup" module (<a href="http://www.crummy.com/software/BeautifulSoup/)">more info</a>).
 
-To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical to work with a clean file). It should begin with "from pyllica import *".
+To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical to work with a clean file). It should begin with
+
+<blockquote>
+from pyllica import *
+</blockwuote>
 
 A typical command file would look like this :
 <blockquote>
