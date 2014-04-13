@@ -1,17 +1,19 @@
 Pyllica
 =======
 
-Pyllica is a small python tool to retrieve the text-version of newspapers in gallica (it works also for books and other single documents)
+Pyllica is a small python tool to retrieve the text-version of newspapers in <a href="http://gallica.bnf.fr/">gallica</href>, the main french digital library. It works also for books and other single documents (and, soon perhaps, for periodicals). 
+
+It will not retrieve documents that are only accessible in image version (that is, that have not been OCRized).
 
 <h3>Installation and requirements</h3>
 
 It is based on python 2.7.5 and requires the "beautiful soup" module (<a href="http://www.crummy.com/software/BeautifulSoup/)">more info</a>).
 
-To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical this way). It should begins with "from pyllica import *".
+To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical this way). It should begin with "from pyllica import *".
 
 A typical command file would look like this :
 <blockquote>
-from pyllica import *
+from pyllica import *<br /> <br />
 textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
 </blockquote>
 
@@ -35,7 +37,7 @@ To use textpress, you have to specify the following information:<ul>
 <li>lastpage = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastapage=4 should do the trick.</li>
 </ul>
 
-If I want to get the first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following :
+If I want to get the first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following:
 
 <blockquote>
 textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdebats", year=1862, month=1, day=6, ranging=7, item=52, firstpage=1, lastpage=2)
@@ -45,7 +47,7 @@ pyllica also provindes you a brief index of the gallica url of the mains french 
 
 <h3>Textbook</h3>
 
-textbook(url, title, firstpage, lastpage) is a much simpler function than textpress. It allows you to get a set of pages from any document on gallica.
+textbook(url, title, firstpage, lastpage) is a much simpler function than textpress. It allows you to get a set of pages from any text-version of a document on gallica.
 
 To use textbook, you have to specify the following information:<ul>
 <li>url = url id for the book. The information must be a string (and put into brackets).</li>
@@ -53,6 +55,12 @@ To use textbook, you have to specify the following information:<ul>
 <li>firstpage = the first page you are looking for.</li>
 <li>lastpage = the last page you are looking for. If you only fetch one page, put the same number as firstpage.</li>
 </ul>
+
+If I want to get the pages 13 to 15 of the <a href="http://gallica.bnf.fr/ark:/12148/bpt6k6290660h">1837 edition</a> of the Almanach de commerce of Sébastien Bottin (a splendid corpus for vintage data mining, by the way), you can use the following:
+
+<blockquote>
+textbook(url="http://gallica.bnf.fr/ark:/12148/bpt6k6290660h", title="bottin", firstpage=13, lastpage=15)
+</blockquote>
 
 <h3>Future development</h3>
 
