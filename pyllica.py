@@ -32,6 +32,9 @@ def pressdate(year, month, day, ranging, item):
 			if day>monthbissex[curmonth]:
 				day = day-monthbissex[curmonth]
 				curmonth+=1
+			if curmonth==12:
+				year+=1
+				curmonth=0
 			finalmonday = '%02d' % day
 			finalmonth = curmonth+1
 			finalmonth = '%02d' % finalmonth
@@ -44,6 +47,9 @@ def pressdate(year, month, day, ranging, item):
 			if day>monthunbissex[curmonth]:
 				day = day-monthunbissex[curmonth]
 				curmonth+=1
+			if curmonth==12:
+				year+=1
+				curmonth=0
 			finalmonday = '%02d' % day
 			finalmonth = curmonth+1
 			finalmonth = '%02d' % finalmonth
