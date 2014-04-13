@@ -3,21 +3,21 @@ Pyllica
 
 Pyllica is a small python tool to retrieve the text-version of newspapers in gallica (it works also for books and other single documents)
 
-Installation and requirements
+<h3>Installation and requirements</h3>
 
-It is based on python 2.7.5 and requires the "beautiful soup" module (more info there : http://www.crummy.com/software/BeautifulSoup/).
+It is based on python 2.7.5 and requires the "beautiful soup" module (<href="http://www.crummy.com/software/BeautifulSoup/)">more info</hfre>).
 
 To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical this way). It should begins with "from pyllica import *".
 
 A typical command file would look like this :
-from pyllica import *
-textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
+  from pyllica import *
+  textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
 
 On my computer, the download rates was approximately 10-15 pages per minute for newspapers (much quicker for usual books, as pages are lighter and there is less calculus involved). The rate could go higher or lower depending on the efficiency of your laptop the quality of the internet connection.
 
 The tool currently includes two functions, texpress and textbook.
 
-Textpress
+<h3>Textpress</h3>
 
 textpress(url, title, year, month, day, item, ranging, firstpage, lastpage) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
 
@@ -38,18 +38,17 @@ textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdeb
 
 pyllica also provindes you an index of the gallica url of the mains french newspaper archived in gallica.
 
-Textbook
+<h3>Textbook</h3>
 
 textbook(url, title, firstpage, lastpage) is a much simpler function than textpress. It allows you to get a set of pages from any document on gallica.
 
 To use textbook, you have to specify the following information:
-
 *url = url id for the book. The information must be a string (and put into brackets).
 *title = title of the retrieved file (preferably the name of the book, but it can be anything). The information must be a string (and put into brackets).
 *firstpage = the first page you are looking for.
 *lastpage = the last page you are looking for. If you only fetch one page, put the same number as firstpage.
 
-Future development
+<h3>Future development</h3>
 
 I'm planning to do the following things:
 *Rewriting the code for older version of python (and using regex to avoid the installation of beautiful soup).
