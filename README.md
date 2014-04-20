@@ -27,7 +27,7 @@ The tool currently includes two functions, texpress and textbook.
 
 <h3>Textpress</h3>
 
-textpress(url, title, year, month, day, item, ranging, firstpage, lastpage) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
+textpress(url, title, year, month, day, item, ranging, firstpage, lastpage, sep1, sep2) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
 
 To use textpress, you have to specify the following information:<ul>
 <li><b>url</b> = url id for the newspaper (for instance, "http://gallica.bnf.fr/ark:/12148/cb34431794k/" for "Le Temps"). The information must be a string (and put into brackets).</li>
@@ -39,6 +39,8 @@ To use textpress, you have to specify the following information:<ul>
 <li><b>ranging</b> = rate of fetching. For instance, a ranging of 7, will give you a newspaper every week. This is especially useful if you look for journalistic texts that appears on a non-daily basis (a weekly chronicle…).</li>
 <li><b>firstpage</b> = the first page you are looking for.</li>
 <li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastpage=4 should do the trick.</li>
+<li><b>sep1</b> = the first separator in order to isolate the beginning of a press section from the early part of a page. This parameter is optional</li>
+<li><b>sep2</b> = the last separator in order to isolate the end of a press section from the late part of a page. This parameter is optional</li>
 </ul>
 
 If you want first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following:
