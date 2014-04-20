@@ -18,7 +18,7 @@ from pyllica import *
 A typical command file would look like this :
 <blockquote>
 from pyllica import *<br /> <br />
-textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, ranging=1, item=1, firstpage=2, lastpage=2)
+textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, rate=1, item=1, firstpage=2, lastpage=2)
 </blockquote>
 
 On my computer, the download rate was approximately 10-15 pages per minute for newspapers (much quicker for usual books, as pages are lighter and there is less calculus involved). The rate could go higher or lower depending on the efficiency of your laptop the quality of your internet connection.
@@ -27,7 +27,7 @@ The tool currently includes two functions, texpress and textbook.
 
 <h3>Textpress</h3>
 
-textpress(url, title, year, month, day, item, ranging, firstpage, lastpage, sep1, sep2) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
+textpress(url, title, year, month, day, item, rate, firstpage, lastpage, sep1, sep2) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
 
 To use textpress, you have to specify the following information:<ul>
 <li><b>url</b> = url id for the newspaper (for instance, "http://gallica.bnf.fr/ark:/12148/cb34431794k/" for "Le Temps"). The information must be a string (and put into brackets).</li>
@@ -36,7 +36,7 @@ To use textpress, you have to specify the following information:<ul>
 <li><b>month</b> = month of the startdate file</li>
 <li><b>day</b> = day of the stardate file</li>
 <li><b>item</b> = number of newspapers retrieved</li> 
-<li><b>ranging</b> = rate of fetching. For instance, a ranging of 7, will give you a newspaper every week. This is especially useful if you look for journalistic texts that appears on a non-daily basis (a weekly chronicle…).</li>
+<li><b>rate</b> = rate of fetching. For instance, a rate of 7, will give you a newspaper every week. This is especially useful if you look for journalistic texts that appears on a non-daily basis (a weekly chronicle…).</li>
 <li><b>firstpage</b> = the first page you are looking for.</li>
 <li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastpage=4 should do the trick.</li>
 <li><b>sep1</b> = the first separator in order to isolate the beginning of a press section from the early part of a page. This parameter is optional</li>
@@ -46,7 +46,7 @@ To use textpress, you have to specify the following information:<ul>
 If you want first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following:
 
 <blockquote>
-textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdebats", year=1862, month=1, day=6, ranging=7, item=52, firstpage=1, lastpage=2)
+textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdebats", year=1862, month=1, day=6, rate=7, item=52, firstpage=1, lastpage=2)
 </blockquote>
 
 pyllica also provindes you a brief index of the gallica url of the mains french newspaper archived in gallica.
