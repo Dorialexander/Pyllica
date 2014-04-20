@@ -123,7 +123,7 @@ def textpress(url, title="paper", year=1900, month=1, day=1, item=1, rate=1, fir
 		regex(textfile, sep1, sep2)
 
 #the main function to deal with ordinary books or works
-def textbook(url, title, firstpage, lastpage):
+def textbook(url, title="book", firstpage=1, lastpage=1, sep1="", sep2=""):
 	secondpage = firstpage+1
 	lastpage+=1
 	listpage = range(secondpage, lastpage)
