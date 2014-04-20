@@ -88,16 +88,19 @@ def regex(textfile, sep1, sep2):
 	chainecomplete = re.sub(r'<div(.+)>', r'', chainecomplete) #withdrawing remaining some html markers
 	chainecomplete = re.sub(r'</div>', r'', chainecomplete) #withdrawing remaining other html markers
 	chainecomplete = re.sub(r'\n', r'\n\n', chainecomplete) #single line feed becomes double line feeds for easier reading
-	if sep1 in chainecomplete:
-		head, sep, tail = chainecomplete.partition(sep1)
-		enterfile = sep + tail
-	else:
-		enterfile = "BEGINNING NOT ATTAINED" + chainecomplete
-	if sep2 in enterfile:
-		head, sep, tail = enterfile.partition(sep2)
-		globalfile = head + sep
-	else:
-		globalfile = enterfile + "END NOT ATTAINED"
+	try:
+		if sep1 in chainecomplete:
+			head, sep, tail = chainecomplete.partition(sep1)
+			enterfile = sep + tail
+		else:
+			enterfile = "BEGINNING NOT ATTAINED" + chainecomplete
+		if sep2 in enterfile:
+			head, sep, tail = enterfile.partition(sep2)
+			globalfile = head + sep
+		else:
+			globalfile = enterfile + "END NOT ATTAINED"
+	except:
+		globalfile = chainecomplete
 	funfile = open(textfile, 'w') #opening the file in write mode
 	funfile.write(globalfile) #replacing the content with new cleaned content
 
