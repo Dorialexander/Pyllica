@@ -13,8 +13,8 @@ lesiecle = "http://gallica.bnf.fr/ark:/12148/cb32868136g/date" #The "Siecle"
 lematin = "http://gallica.bnf.fr/ark:/12148/cb328123058/date" #The "Matin"
 lepetitjournal = "http://gallica.bnf.fr/ark:/12148/cb32895690j/date" #The "Petit Journal"
 
-#Initiating the function to retrieve the date id of gallica
-def pressdate(year, month, day, ranging, item):
+#Initiating the function for retrieving the date id of gallica
+def pressdate(year, month, day, rate, item):
 	finallist=[]
 	monthbissex=[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 	monthunbissex=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -27,7 +27,7 @@ def pressdate(year, month, day, ranging, item):
 	finallist.append(initialresult)
 	if year%4==0 and not year%100==0:
 		while(counting<item):
-			day+=ranging
+			day+=rate
 			counting+=1
 			if day>monthbissex[curmonth]:
 				day = day-monthbissex[curmonth]
@@ -42,7 +42,7 @@ def pressdate(year, month, day, ranging, item):
 			finallist.append(finalresult)
 	else:
 		while(counting<item):
-			day+=ranging
+			day+=rate
 			counting+=1
 			if day>monthunbissex[curmonth]:
 				day = day-monthunbissex[curmonth]
@@ -75,24 +75,35 @@ def appendurl(url, textfile):
 	with open(textfile, 'a') as myFile:
 		myFile.write(pressbottom)
 
-#A function to clean the text using several regex
-def regex(textfile):
+#A global function to clean the text using several regex
+def regex(textfile, sep1, sep2):
 	file = open(textfile, 'r')
 	myFile = file.read()
-	chaineTriee = re.sub(r'<span class="PAG_[0-9]+_ST[0-9]+">', r' ', myFile) #withdrawing the first part of span
-	chainebientriee = re.sub(r'</span>', r' ', chaineTriee) #withdrawing the ending part of span
-	chaineclarifiee = re.sub(r'<br/>', r'\n', chainebientriee) #replacing <br/> with effective line feeds
-	chaineparfaite = re.sub(r'\b-( +)\n\s+', r'', chaineclarifiee) #merging the hyphens at the ending part of the column
-	chaineachevee = re.sub(r'\n(?!\n)', r'', chaineparfaite) #transforming paragraphs into a single line of text
-	chainerelevee = re.sub(r'<div(.+)>', r'', chaineachevee) #withdrawing remaining some html markers
-	chaineaboutie = re.sub(r'</div>', r'', chainerelevee) #withdrawing remaining other html markers
-	chainecomplete = re.sub(r'\n', r'\n\n', chaineaboutie) #single line feed becomes double line feeds for easier reading
+	chainecomplete = re.sub(r'<span class="PAG_[0-9]+_ST[0-9]+">', r'', myFile) #withdrawing the first part of span
+	chainecomplete = re.sub(r'</span>', r'', chainecomplete) #withdrawing the ending part of span
+	chainecomplete = re.sub(r'<br/>', r'\n', chainecomplete) #replacing <br/> with effective line feeds
+	chainecomplete = re.sub(r'(\b- +\n)(\s+)', r'\2', chainecomplete) #merging the hyphens at the ending part of the column
+	chainecomplete = re.sub(r'(\b- +)(\s+)', r'\2', chainecomplete) #merging the hyphens followed by a space
+	chainecomplete = re.sub(r'\n(?!\n)', r'', chainecomplete) #transforming paragraphs into a single line of text
+	chainecomplete = re.sub(r'<div(.+)>', r'', chainecomplete) #withdrawing remaining some html markers
+	chainecomplete = re.sub(r'</div>', r'', chainecomplete) #withdrawing remaining other html markers
+	chainecomplete = re.sub(r'\n', r'\n\n', chainecomplete) #single line feed becomes double line feeds for easier reading
+	if sep1 in chainecomplete:
+		head, sep, tail = chainecomplete.partition(sep1)
+		enterfile = sep + tail
+	else:
+		enterfile = "BEGINNING NOT ATTAINED" + chainecomplete
+	if sep2 in enterfile:
+		head, sep, tail = enterfile.partition(sep2)
+		globalfile = head + sep
+	else:
+		globalfile = enterfile + "END NOT ATTAINED"
 	funfile = open(textfile, 'w') #opening the file in write mode
-	funfile.write(chainecomplete) #replacing the content with new cleaned content
+	funfile.write(globalfile) #replacing the content with new cleaned content
 
 #the main function to deal with daily newspaper in the calendar mode of gallica
-def textpress(url, title, year, month, day, item, ranging, firstpage, lastpage):
-	firstdate = pressdate(year, month, day, ranging, item)
+def textpress(url, title="paper", year=1900, month=1, day=1, item=1, rate=1, firstpage=1, lastpage=1, sep1="", sep2=""):
+	firstdate = pressdate(year, month, day, rate, item)
 	secondpage = firstpage+1
 	lastpage+=1
 	listpage = range(secondpage, lastpage)
@@ -101,12 +112,12 @@ def textpress(url, title, year, month, day, item, ranging, firstpage, lastpage):
 		firstendurl = "/f" + str(firstpage) + ".texte"
 		firsturl = url + date + firstendurl
 		openurl(firsturl, textfile)
-		if (len(listpage)>1):
+		if (len(listpage)>0):
 			for page in listpage:
 				endurl = "/f" + str(page) + ".texte"
 				otherurl = url + date + endurl
 				appendurl(otherurl, textfile)
-		regex(textfile)
+		regex(textfile, sep1, sep2)
 
 #the main function to deal with ordinary books or works
 def textbook(url, title, firstpage, lastpage):
@@ -122,4 +133,4 @@ def textbook(url, title, firstpage, lastpage):
 			endurl = "/f" + str(page) + ".texte"
 			otherurl = url + endurl
 			appendurl(otherurl, textfile)
-	regex(textfile)
+	regex(textfile, sep1, sep2)
