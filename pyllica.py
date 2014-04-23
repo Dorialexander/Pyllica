@@ -94,6 +94,9 @@ def regex(textfile, sep1, sep2):
 			enterfile = sep + tail
 		else:
 			enterfile = "BEGINNING NOT ATTAINED" + chainecomplete
+	except:
+		enterfile = chainecomplete
+	try:
 		if sep2 in enterfile:
 			head, sep, tail = enterfile.partition(sep2)
 			globalfile = head + sep
