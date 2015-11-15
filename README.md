@@ -1,9 +1,10 @@
 Pyllica
 =======
 
-Pyllica is a small python tool to retrieve the text-version of newspapers in <a href="http://gallica.bnf.fr/">gallica</a>, the main french digital library. It works also for books and other single documents (and, soon perhaps, for periodicals). 
+Pyllica est un outil écrit en Python permettant de récupérer des documents hébergés sur la bibliothèque numérique 
+<a href="http://gallica.bnf.fr/">Gallica</a>. Il permet notamment de constituer rapidement de grands corpus afin d'effectuer des analyses assistées par ordinateur (statistique textuelles, text mining, reconnaissance d'image).
 
-It will not retrieve documents that are only accessible in image version (that is, that have not been <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRized</a>).
+Initialement écrit par Pierre-Carl Langlais il a été très largement mis à jour et complété par Julien Schuh. La dernière version tire notamment partie de nouvelles fonctionnalités introduites sur Gallica, telles que l'extraction des pdf ou l'extraction des images. Auparavant, Pyllica ne fonctionnait que sur des documents <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRisés</a>).
 
 <h3>Installation and requirements</h3>
 
