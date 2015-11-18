@@ -20,13 +20,18 @@ Pour chacun des outils, il y a deux fichiers: un fichier contenant le programme,
 
 <h3>Pyllicalabs</h3>
 On modifie le contenu du fichier actionpyllicalabs:
+
+```python
 textpress(url="http://gallicalabs.bnf.fr/ark:/12148/cb32817642h/date", title="lemoderniste", year=1889, month=5, day=25, item=52, rate=7, lastpage=11)
-url: on indique l’adresse sur Gallica de la page du périodique indiquant toutes les années disponibles.
-title: on choisit un titre qui sera indiqué dans le nom du fichier.
-year, month, day: la date du premier numéro qu’on souhaite télécharger.
-item: le nombre de fichiers qu’on veut récupérer.
-rate: le nombre de jours entre chaque numéro.
-lastpage: avec la nouvelle version de Gallica, la numérotation des pages n’est pas importante, on peut laisser cet élément tel quel.
+```
+
+La fonction comprend les commandes suivantes :<br/>
+url: on indique l’adresse sur Gallica de la page du périodique indiquant toutes les années disponibles.<br/>
+title: on choisit un titre qui sera indiqué dans le nom du fichier.<br/>
+year, month, day: la date du premier numéro qu’on souhaite télécharger.<br/>
+item: le nombre de fichiers qu’on veut récupérer.<br/>
+rate: le nombre de jours entre chaque numéro.<br/>
+lastpage: avec la nouvelle version de Gallica, la numérotation des pages n’est pas importante, on peut laisser cet élément tel quel.<br/>
 
 La dernière version de Julien Schuh intègre des règles en cas d’exception: si l’outil ne trouve pas un des numéros (par exemple, si le périodique n’est pas disponible pour une des dates), un message avertit du problème mais le téléchargement des numéros suivants continue.
 
@@ -41,11 +46,12 @@ On insère ces chiffres (en conservant bien les slash) dans le fichier actionpyl
 
 On peut changer la résolution souhaitée en modifiant la fin de l'url dans le fichier pyllicalabsjpg.py (par exemple, full/5000/0/native.jpg au lieu de full/3000/0/native.png). On peut aussi récupérer les images au format png ou tif en remplaçant la mention « jpg » par « png » ou « tif » à la fin de l'adresse et du format de fichier créé:
 
+```python
 for page in listpage:
         jpgfile = title + "_" + str(page) + ".png"
-
         url = 'http://gallicalabs.bnf.fr/iiif/ark:' + identifier + '/f' + str(page) + '/full/3000/0/native.png'
         urllib.request.urlretrieve(url, jpgfile)
+```
 
 <h3>Pyllicalabsjpgpress</h3>
 Pour récupérer les images d’une série de numéros de périodiques, on part de l’adresse du périodique avec les dates: http://gallicalabs.bnf.fr/ark:/12148/cb34427442r/date et on supprime la fin de l'adresse "/date" pour l'intégrer dans le fichier actionpyllicalabsjpgpress.py dans la variable « url ».
