@@ -26,12 +26,12 @@ textpress(url="http://gallicalabs.bnf.fr/ark:/12148/cb32817642h/date", title="le
 ```
 
 La fonction comprend les commandes suivantes :<br/>
-url: on indique l’adresse sur Gallica de la page du périodique indiquant toutes les années disponibles.<br/>
-title: on choisit un titre qui sera indiqué dans le nom du fichier.<br/>
-year, month, day: la date du premier numéro qu’on souhaite télécharger.<br/>
-item: le nombre de fichiers qu’on veut récupérer.<br/>
-rate: le nombre de jours entre chaque numéro.<br/>
-lastpage: avec la nouvelle version de Gallica, la numérotation des pages n’est pas importante, on peut laisser cet élément tel quel.<br/>
+<b>url</b>: on indique l’adresse sur Gallica de la page du périodique indiquant toutes les années disponibles.<br/>
+<b>title</b>: on choisit un titre qui sera indiqué dans le nom du fichier.<br/>
+<b>year, month, day</b>: la date du premier numéro qu’on souhaite télécharger.<br/>
+<b>item</b>: le nombre de fichiers qu’on veut récupérer.<br/>
+<b>rate</b>: le nombre de jours entre chaque numéro.<br/>
+<b>lastpage</b>: avec la nouvelle version de Gallica, la numérotation des pages n’est pas importante, on peut laisser cet élément tel quel.<br/>
 
 La dernière version de Julien Schuh intègre des règles en cas d’exception: si l’outil ne trouve pas un des numéros (par exemple, si le périodique n’est pas disponible pour une des dates), un message avertit du problème mais le téléchargement des numéros suivants continue.
 
