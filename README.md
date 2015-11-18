@@ -22,7 +22,14 @@ Pour chacun des outils, il y a deux fichiers: un fichier contenant le programme,
 On modifie le contenu du fichier actionpyllicalabs:
 
 ```python
-textpress(url="http://gallicalabs.bnf.fr/ark:/12148/cb32817642h/date", title="lemoderniste", year=1889, month=5, day=25, item=52, rate=7, lastpage=11)
+textpress(url="http://gallicalabs.bnf.fr/ark:/12148/cb32817642h/date", 
+        title="lemoderniste", 
+        year=1889, 
+        month=5, 
+        day=25, 
+        item=52, 
+        rate=7, 
+        lastpage=11)
 ```
 
 La fonction comprend les commandes suivantes :<br/>
