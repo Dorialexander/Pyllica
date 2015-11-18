@@ -4,11 +4,11 @@ Pyllica
 Pyllica est un outil écrit en Python permettant de récupérer des documents hébergés sur la bibliothèque numérique 
 <a href="http://gallica.bnf.fr/">Gallica</a>. Il permet notamment de constituer rapidement de grands corpus afin d'effectuer des analyses assistées par ordinateur (statistique textuelles, text mining, reconnaissance d'image).
 
-Initialement écrit par Pierre-Carl Langlais il a été très largement mis à jour et complété par Julien Schuh. La dernière version tire notamment partie de nouvelles fonctionnalités introduites sur Gallica, telles que l'extraction des pdf ou l'extraction des images. Auparavant, Pyllica ne fonctionnait que sur des documents <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRisés</a>).
+Initialement écrit par Pierre-Carl Langlais il a été très largement mis à jour et complété par Julien Schuh. La dernière version tire notamment partie de nouvelles fonctionnalités introduites sur Gallica, telles que l'extraction des pdf ou l'extraction des images. Auparavant, Pyllica ne fonctionnait que sur des documents <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRisés</a>). À l'occasion de cette mise à jour, le programme a été également réécrit en Python 3 (la version d'origine était en Python 2.7).
 
 <h3>Installation and requirements</h3>
 
-It is based on python 2.7.5 and requires the module <em>beautiful soup</em> (<a href="http://www.crummy.com/software/BeautifulSoup/)">more info</a>).
+Pyllica est un programme en Python 3, qui fait appel à l'extension <em>beautiful soup</em> (<a href="http://www.crummy.com/software/BeautifulSoup/)">plus d'informations par ici</a>). Pour l'utilisez vous devez avoir une version de Python à jour (cf. les recommandations officielles pour une installation sous <a href="https://docs.python.org/3/using/windows.html">Windows</a>, <a href="https://docs.python.org/3/using/mac.html">Mac</a> et <a href="https://docs.python.org/3/using/unix.html">Linux</a>) et télécharger Beautiful Soup.
 
 To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical to work with a clean file). It should begin with:
 
