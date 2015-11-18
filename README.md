@@ -6,90 +6,48 @@ Pyllica est un outil écrit en Python permettant de récupérer des documents h�
 
 Initialement écrit par Pierre-Carl Langlais il a été très largement mis à jour et complété par Julien Schuh. La dernière version tire notamment partie de nouvelles fonctionnalités introduites sur Gallica, telles que l'extraction des pdf ou l'extraction des images. Auparavant, Pyllica ne fonctionnait que sur des documents <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCRisés</a>). À l'occasion de cette mise à jour, le programme a été également réécrit en Python 3 (la version d'origine était en Python 2.7).
 
-<h3>Installation and requirements</h3>
+<h3>Installation et usage</h3>
 
 Pyllica est un programme en Python 3, qui fait appel à l'extension <em>beautiful soup</em> (<a href="http://www.crummy.com/software/BeautifulSoup/)">plus d'informations par ici</a>). Pour l'utilisez vous devez avoir une version de Python à jour (cf. les recommandations officielles pour une installation sous <a href="https://docs.python.org/3/using/windows.html">Windows</a>, <a href="https://docs.python.org/3/using/mac.html">Mac</a> et <a href="https://docs.python.org/3/using/unix.html">Linux</a>) et télécharger Beautiful Soup.
 
-To initiate pyllica, put pyllica.py in the directory where you want to archive the texts and open a new python file (you can also write directly your commands into pyllica.py, but it is much practical to work with a clean file). It should begin with:
+Pyllica se compose de quatre outils:
+- Pyllicalabs permet d’extraire les fichiers en texte brut de numéros de périodiques qui ont été océrisés, selon une fourchette définie par l'utilisateur;
+- Pyllicalabspdf permet d’extraire les pdf de numéros de périodiques;
+- Pyllicalabsjpg permet d’extraire les pages d’un document sous forme de fichier jpg, tif ou png, avec une qualité définie par l’utilisateur;
+- Pyllicalabsjpgpress permet de faire la même opération pour des numéros de périodiques.
 
-<blockquote>
-from pyllica import *
-</blockquote>
+Pour chacun des outils, il y a deux fichiers: un fichier contenant le programme, et un fichier d’instruction (commençant par le mot « action »). Pour utiliser un outil, il suffit de placer les deux fichiers dans un nouveau dossier et de modifier le fichier d’instruction en fonction des livres ou périodiques que l’on veut télécharger. Sous Mac, s’il y a des problèmes d’encodage du texte au moment de l’utilisation des outils, il ne faut pas cliquer sur le fichier d’instruction pour le lancer mais démarrer IDLE depuis depuis le Terminal ($ idle3) et faire Fichier > Ouvrir pour lancer l’action.
 
-A typical command file would look like this :
-<blockquote>
-from pyllica import *<br /> <br />
-textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="debats", year=1900, month=2, day=28, rate=1, item=1, firstpage=2, lastpage=2)
-</blockquote>
+<h3>Pyllicalabs</h3>
+On modifie le contenu du fichier actionpyllicalabs:
+textpress(url="http://gallicalabs.bnf.fr/ark:/12148/cb32817642h/date", title="lemoderniste", year=1889, month=5, day=25, item=52, rate=7, lastpage=11)
+url: on indique l’adresse sur Gallica de la page du périodique indiquant toutes les années disponibles.
+title: on choisit un titre qui sera indiqué dans le nom du fichier.
+year, month, day: la date du premier numéro qu’on souhaite télécharger.
+item: le nombre de fichiers qu’on veut récupérer.
+rate: le nombre de jours entre chaque numéro.
+lastpage: avec la nouvelle version de Gallica, la numérotation des pages n’est pas importante, on peut laisser cet élément tel quel.
 
-On my computer, the download rate was approximately 10-15 pages per minute for newspapers (much quicker for usual books, as pages are lighter and there is less calculus involved). The rate could go higher or lower depending on the efficiency of your laptop the quality of your internet connection.
+La dernière version de Julien Schuh intègre des règles en cas d’exception: si l’outil ne trouve pas un des numéros (par exemple, si le périodique n’est pas disponible pour une des dates), un message avertit du problème mais le téléchargement des numéros suivants continue.
 
-The tool currently includes two functions, texpress and textbook.
+<h3>Pyllicalabspdf</h3>
+Comme l’outil précédent, il permet de récupérer les fichiers pdf de périodiques; la méthode d’utilisation est la même.
 
-<h3>Textpress</h3>
+<h3>Pyllicalabsjpg</h3>
+La nouvelle version de Gallica utilise la norme IIIF, permettant de récupérer les images en haute résolution.
+Pour l'utiliser avec un document unique, il suffit de récupérer l'identifiant du document dans l'adresse de gallicalabs (ce qui suit ark:), par exemple: /12148/btv1b86000454/
 
-textpress(url, title, year, month, day, item, rate, firstpage, lastpage, sep1, sep2) is an advanced function to deal with newspapers in gallica. It allows to fetch a given number of newspaper, from a startdate. The rate of fetching (one newspaper out of 7, for example) ou the number of pages retrieved can also be customised. 
+On insère ces chiffres (en conservant bien les slash) dans le fichier actionpyllicalabspg.py au niveau de la variable "identifier", on choisit un titre ("title") pour les fichiers de sortie et on sélectionne la première et la dernière page (attention, il faut choisir en fonction des numéros des vues et non de la pagination réelle du document). On place ce fichier et le fichier pyllicalabs3jpg.py dans le dossier de destination et on le lance avec Python.
 
-To use textpress, you have to specify the following information:<ul>
-<li><b>url</b> = url id for the newspaper (for instance, "http://gallica.bnf.fr/ark:/12148/cb34431794k/" for "Le Temps"). The information must be a string (and put into brackets).</li>
-<li><b>title</b> = title of the retrieved file (preferably the name of the newspaper, but it can be anything). The information must be a string (and put into brackets).</li>
-<li><b>year</b> = year of the startdate file</li>
-<li><b>month</b> = month of the startdate file</li>
-<li><b>day</b> = day of the stardate file</li>
-<li><b>item</b> = number of newspapers retrieved</li> 
-<li><b>rate</b> = rate of fetching. For instance, a rate of 7, will give you a newspaper every week. This is especially useful if you look for journalistic texts that appears on a non-daily basis (a weekly chronicle…).</li>
-<li><b>firstpage</b> = the first page you are looking for.</li>
-<li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage. Till the end of the XIXth century, french newspapers usually cormprises 4 pages: if you are looking for the whole newspaper lastpage=4 should do the trick.</li>
-<li><b>sep1</b> = the first separator in order to isolate the beginning of a press section from the early part of a page. This parameter is optional</li>
-<li><b>sep2</b> = the last separator in order to isolate the end of a press section from the late part of a page. This parameter is optional</li>
-</ul>
+On peut changer la résolution souhaitée en modifiant la fin de l'url dans le fichier pyllicalabsjpg.py (par exemple, full/5000/0/native.jpg au lieu de full/3000/0/native.png). On peut aussi récupérer les images au format png ou tif en remplaçant la mention « jpg » par « png » ou « tif » à la fin de l'adresse et du format de fichier créé:
 
-If you want first two pages of all the issues published on monday of the "journal des débats" of the year 1862, you can use the following:
+for page in listpage:
+        jpgfile = title + "_" + str(page) + ".png"
 
-<blockquote>
-textpress(url="http://gallica.bnf.fr/ark:/12148/cb39294634r/date", title="lesdebats", year=1862, month=1, day=6, rate=7, item=52, firstpage=1, lastpage=2)
-</blockquote>
+        url = 'http://gallicalabs.bnf.fr/iiif/ark:' + identifier + '/f' + str(page) + '/full/3000/0/native.png'
+        urllib.request.urlretrieve(url, jpgfile)
 
-pyllica also provindes you a brief index of the gallica url of the mains french newspaper archived in gallica.
+<h3>Pyllicalabsjpgpress</h3>
+Pour récupérer les images d’une série de numéros de périodiques, on part de l’adresse du périodique avec les dates: http://gallicalabs.bnf.fr/ark:/12148/cb34427442r/date et on supprime la fin de l'adresse "/date" pour l'intégrer dans le fichier actionpyllicalabsjpgpress.py dans la variable « url ».
 
-<h3>Textbook</h3>
-
-textbook(url, title, firstpage, lastpage) is a much simpler function than textpress. It allows you to get a set of pages from any text-version of a document on gallica.
-
-To use textbook, you have to specify the following information:<ul>
-<li><b>url</b> = url id for the book. The information must be a string (and put into brackets).</li>
-<li><b>title</b> = title of the retrieved file (preferably the name of the book, but it can be anything). The information must be a string (and put into brackets).</li>
-<li><b>firstpage</b> = the first page you are looking for.</li>
-<li><b>lastpage</b> = the last page you are looking for. If you only fetch one page, put the same number as firstpage.</li>
-</ul>
-
-If you're looking the pages 13 to 15 of the <a href="http://gallica.bnf.fr/ark:/12148/bpt6k6290660h">1837 edition</a> of the <a href="http://gallica.bnf.fr/ark:/12148/cb32688404r/date">Almanach du commerce</a> of Sébastien Bottin (a splendid corpus for vintage data mining, by the way), you can use the following:
-
-<blockquote>
-textbook(url="http://gallica.bnf.fr/ark:/12148/bpt6k6290660h", title="bottin", firstpage=13, lastpage=15)
-</blockquote>
-
-<h3>What's next?</h3>
-
-If all works fine you should see your directory should list the retrieved files in the following manneer:
-<blockquote>
-lesdebats-18630103.txt<br />
-lesdebats-18630102.txt<br />
-lesdebats-18630101.txt<br />
-lesdebats-18621231.txt<br />
-</blockquote>
-
-As the OCR recognition of Gallica is not perfect (about 5-10% of misread words for standard journalistic text, as much as 40% when the original copy is in a bad shape), the texts are better suited for large quantitative data analysis.
-
-While you can do some convenient data analysis with python, I would recommend using a more powerful statistic language. <a href="http://www.r-project.org/">R</a> includes an <a hrefh="http://cran.r-project.org/web/packages/tm/index.html">effective library</a> for text and data mining, tm. This <a href="http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf">introduction</a> to the tm package is quite accessible.
-
-<h3>Future development</h3>
-
-I'm planning to do the following things:<ul>
-<li><b>Rewrite the code for older version of python</b> (and using regex to avoid the installation of beautiful soup).</li>
-<li><b>Adding a new function to retrieve issues of periodicals</b> (<a href="http://gallica.bnf.fr/ark:/12148/cb32688404r/date">like this one</a>).</li>
-<li><b>Adding a set of functions to deal with image and pdf versions</b> (an adaptation of the <a href="https://fr.wikisource.org/wiki/Wikisource:Gallica/gallica.ml">fine script</a> of <a href="https://fr.wikisource.org/wiki/Utilisateur:Pmx">Pmx</a> for Wikisource for python might seem nice).</li>
-<li><b>Inclusion of tabular content recognition</b>. Instead of being read like texts, tables would be recognised as data structure</li>
-<li><b>Adding gallica metadata to the retrieved files</b> (authors, editors and so forth…).</li>
-<li><b>Developing of repository of section separators for several old french newspapers</b>, so that the content of a specific section can be retrieved. I've made up a function to fetch all the business sections of the "Journal des débats" in the 1860s: the results were not perfect (one issue out of two were properly retrieved), as this function relies on excellent OCR recognition. This is still an improvement from all-manual processes.</li>
-</ul>
+Il faut ici tenir compte de la pagination; on peut gonfler le nombre de pages au cas ou certains documents comportent plus de pages, les erreurs s'afficheront dans le shell avant que le programme ne continue avec le numéro suivant du périodique. Par exemple, pour un journal de 8 pages, il vaut mieux indiquer 12 pages pour être certain que des numéros plus longs seront entièrement téléchargés.
