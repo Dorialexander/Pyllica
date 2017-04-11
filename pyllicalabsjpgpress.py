@@ -59,7 +59,7 @@ def jpgpress(url, title="titre", year=1900, month=1, day=1, item=5, rate=1, firs
         realurl = response.geturl()
         print(realurl)
         identifier = re.sub(r'http://gallica.bnf.fr/ark:', r'', realurl)
-        identifier = re.sub(r'.item;jsessionid=.*', r'', identifier)
+        identifier = re.sub(r'.item', r'', identifier)
         finalurl = 'http://gallica.bnf.fr/iiif/ark:' + identifier + '/f' + str(firstpage) + '/full/3000/0/native.jpg'
         print(finalurl)
         try:
